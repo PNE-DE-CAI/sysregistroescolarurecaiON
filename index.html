@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0A4179">
-<title>Sistema de Acompanhamento Escolar · Firebase</title>
+<title>Sistema de Acompanhamento Escolar · URE CAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
@@ -205,7 +205,7 @@ tbody tr:hover{background:var(--primary-soft)}
 <!-- LOADING -->
 <div id="loadingScreen" class="loading-screen">
   <div class="spinner"></div>
-  <div style="font-weight:800;letter-spacing:.1em">CONECTANDO AO FIREBASE...</div>
+  <div style="font-weight:800;letter-spacing:.1em">CONECTANDO AO URE CAI...</div>
   <div id="loadingStatus" style="font-size:.85rem;opacity:.7">Iniciando</div>
 </div>
 
@@ -213,7 +213,7 @@ tbody tr:hover{background:var(--primary-soft)}
 <div id="app" class="app-container hidden">
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-header">
-      <div class="sidebar-brand"><strong>Acomp. Escolar</strong><small>SEDUC SP · Firebase</small></div>
+      <div class="sidebar-brand"><strong>Acomp. Escolar</strong><small>SEDUC SP · URE CAI</small></div>
     </div>
     <nav class="sidebar-nav" id="sidebarNav"></nav>
     <div class="sidebar-footer">
@@ -236,7 +236,7 @@ tbody tr:hover{background:var(--primary-soft)}
 
     <div id="sectionsContainer"></div>
 
-    <footer class="app-footer"><p>Sistema de Acompanhamento Escolar · Firebase Cloud · 2026</p></footer>
+    <footer class="app-footer"><p>Sistema de Acompanhamento Escolar · URE CAI · 2026</p></footer>
   </main>
 </div>
 
@@ -438,7 +438,7 @@ function setSync(on){
   var lbl = $('#connLabel');
   el.classList.remove('online','offline','syncing');
   if(on){ el.classList.add('syncing'); lbl.textContent='Sincronizando...'; }
-  else if(state.firebaseOnline){ el.classList.add('online'); lbl.textContent='Firebase Conectado'; }
+  else if(state.firebaseOnline){ el.classList.add('online'); lbl.textContent='URE CAI Conectado'; }
   else { el.classList.add('offline'); lbl.textContent='Offline (cache)'; }
 }
 function setOnline(on){
@@ -648,7 +648,7 @@ function buildSections(){
         <div class="form-group"><label>Endereço</label><input type="text" id="gEnd"></div>
       </div>
       <div style="margin-top:22px;padding-top:20px;border-top:1px dashed var(--border)">
-        <button type="submit" class="btn btn-primary">💾 Salvar no Firebase</button>
+        <button type="submit" class="btn btn-primary">💾 Salvar no URE CAI</button>
       </div>
     </form>
   </section>
@@ -1183,7 +1183,7 @@ function bindSectionEvents(){
       await fdb.collection('_ping').doc('test').set({ts:new Date().toISOString()});
       await fdb.collection('_ping').doc('test').delete();
       setOnline(true);
-      toast('✅ Conexão com Firebase OK!', 'success');
+      toast('✅ Conexão com URE CAI OK!', 'success');
     }catch(e){
       setOnline(false);
       toast('❌ Erro: '+e.message, 'error');
@@ -1325,7 +1325,7 @@ async function loadAllData(){
   }catch(err){
     console.error('[loadAllData]', err);
     setOnline(false);
-    toast('Erro ao conectar ao Firebase. Verifique as regras do Firestore.', 'error');
+    toast('Erro ao conectar ao URE CAI. Verifique as regras do URE CAI.', 'error');
   }
 }
 
@@ -1369,7 +1369,7 @@ function initRealtimeListeners(){
    INIT
    ============================================================ */
 async function initApp(){
-  console.log('[INIT] Iniciando sistema Firebase...');
+  console.log('[INIT] Iniciando sistema URE CAI...');
   var ls = $('#loadingStatus'); if(ls) ls.textContent = 'Baixando dados da nuvem...';
 
   await loadAllData();
